@@ -8,4 +8,4 @@ client.on("message", msg => {
     msg.reply("Pong!")
   }
 })
-client.login("NzE1Mjg1ODA3NDY3OTg2OTU1.Xs8c2A.3gbOcRSb2ivigi4DBUboUHJVcIM")
+client.login(process.env.CLIENT_TOKEN)
