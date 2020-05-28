@@ -1,0 +1,31 @@
+{
+  "name": "disc_bot_2",
+  "version": "1.0.0",
+  "description": "A test bot to learn deployment and hosting",
+  "main": "index.js",
+  "engines": {
+    "node": "12.14.0",
+    "npm": "6.13.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/faikha2/Disc_bot_2.git"
+  },
+  "keywords": [
+    "heroku",
+    "discord.js"
+  ],
+  "author": "faikha2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faikha2/Disc_bot_2/issues"
+  },
+  "homepage": "https://github.com/faikha2/Disc_bot_2#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0"
+  }
+}
