@@ -7,9 +7,7 @@ const fs = require('fs');
 const client = new Discord.Client()
 
 const port = process.env.PORT || 8080;
-app.listen(port, () => {
-    console.log("Server listening on port " + port);
-});
+console.log("Server listening on port " + port);
 
 // Open the events folder and retrieve each file
 fs.readdir('./events/', (err, files) => {
