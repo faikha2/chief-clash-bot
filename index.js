@@ -1,11 +1,32 @@
+// Get access to the Discord library
 const Discord = require("discord.js")
+// Get access to the file system
+const fs = require('fs');
+
+// Create a client to get info from server
 const client = new Discord.Client()
-client.on("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`)
+
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+    console.log("Server listening on port " + port);
+});
+
+// Open the events folder and retrieve each file
+fs.readdir('./events/', (err, files) => {
+  files.forEach(file => {
+
+      // console.log(file);
+
+      // Finds our event
+      const eventHandler = require(`./events/${file}`)
+
+      // Gets rid of the .js extension
+      const eventName = file.split('.')[0]
+
+      // Calls the functions with args
+      client.on(eventName, (...args) => eventHandler(client, ...args))
+  })
 })
-client.on("message", msg => {
-  if (msg.content === "ping") {
-    msg.reply("Pong!")
-  }
-})
+
+// Login via Discord token
 client.login(process.env.CLIENT_TOKEN)
