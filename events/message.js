@@ -14,8 +14,8 @@
 // var add_strike = require('../commands/add_strike');
 // // 
 // var clear_strike = require('../commands/clear_strikes');
-// Create a way to get API info. We're using the request method
-const request = require('request');
+// // Create a way to get API info. We're using the request method
+// const request = require('request');
 
 module.exports = (client, msg) => {
 
