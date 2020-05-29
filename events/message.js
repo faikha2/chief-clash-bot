@@ -17,11 +17,14 @@
 // // Create a way to get API info. We're using the request method
 // const request = require('request');
 
+var api = require('../commands/API_call');
+
 module.exports = (client, msg) => {
 
     if (msg.content === "!test") {
-        msg.reply("The test has passed!");
+        api(client);
     }
+
     // if (msg.content === "List names") {
     //     msg.reply("The List command was recieved");
     //     list_mem(client);
