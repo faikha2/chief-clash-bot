@@ -10,6 +10,19 @@ const client = new Discord.Client()
 const port = process.env.PORT || 8080;
 console.log("Server listening on port " + port);
 
+// For IP debugging
+require('dns').lookup(require('os').hostname(), function (err, add, fam) {
+  console.log('Local IP: '+add);
+})
+
+var http = require('http');
+http.get('http://bot.whatismyipaddress.com', function(res){
+    res.setEncoding('utf8');
+    res.on('data', function(chunk){
+        console.log('Public IP: ' + chunk);
+    });
+});
+
 // Open the events folder and retrieve each file
 fs.readdir('./events/', (err, files) => {
   files.forEach(file => {
