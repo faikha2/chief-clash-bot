@@ -26,6 +26,8 @@
   },
   "homepage": "https://github.com/faikha2/Disc_bot_2#readme",
   "dependencies": {
-    "discord.js": "^12.2.0"
+    "discord.js": "^12.2.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5"
   }
 }
