@@ -22,7 +22,7 @@ var api = require('../commands/API_call');
 module.exports = (client, msg) => {
 
     if (msg.content === "!test") {
-        api(client);
+       api.call_api();
     }
 
     // if (msg.content === "List names") {

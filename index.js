@@ -15,6 +15,7 @@ require('dns').lookup(require('os').hostname(), function (err, add, fam) {
   console.log('Local IP: '+add);
 })
 
+// More IP debugging
 var http = require('http');
 http.get('http://bot.whatismyipaddress.com', function(res){
     res.setEncoding('utf8');

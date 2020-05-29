@@ -3,6 +3,8 @@ const rp = require('request-promise');
 // Get access to the file system
 const fs = require('fs');
 
+const fixieRequest = rp.defaults({'proxy': process.env.FIXIE_URL});
+
 var url = 'https://api.clashofclans.com/v1/clans/%23L929PGQ2/members';
 var token = 'Bearer ' + process.env.TOKEN;
 
@@ -14,9 +16,16 @@ var options = {
     json: true // Automatically parses the JSON string in the response
 };
 
-function call_api() {
-    return rp(options)
+function call_api () {
+    fixieRequest(options)
         .then(function (response) {
+            // console.log(JSON.stringify(response));
+
+            fs.writeFile('user_data.json', JSON.stringify(response), (err) => {
+                if (err) throw err;
+                console.log('Data written to file');
+            });
+
             return response;
         })
         .catch(function (err) {
@@ -26,35 +35,6 @@ function call_api() {
         });
 }
 
-module.exports = client => {
-
-    call_api().then(function(data) {
-
-        console.log(JSON.stringify(data));
-    
-        // var memList = null;
-        // for (var key in data) {
-        //     if (key === "memberList") {
-        //         memList = data[key];
-        //     }
-        // }
-    
-        // var names = [];
-        // var txt = "";
-        // for (var i = 0; i < memList.length; i++) {
-        //     names.push({name: memList[i].name, strikes: false, num_strikes: 0, reasons: [{reason_1: txt, reason_2: txt, reason_3: txt}]});
-        // }
-
-        // var data = JSON.stringify(names);
-
-        // fs.writeFile('user_data.json', data, (err) => {
-        //     if (err) throw err;
-        //     console.log('Data written to file');
-        // });
-    })
-
-}
-
-// module.exports = {
-//     call_api : call_api, 
-// };
+module.exports = {
+    call_api : call_api, 
+};
