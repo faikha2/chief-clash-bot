@@ -1,6 +1,15 @@
-// Get access to the Discord library
+/**
+ *  This is the main file run by the bot and Heroku server. It connects to the Discord API, keeps track of some IP 
+ *  data for debugging purposes and retrieves/runs all of the files in the events folder. 
+ * 
+ *  Relevant functions:
+ *      None created
+ * 
+ *  File for bot version: 1.0
+ */
+
+// Permissions/access to other modules and libraries
 const Discord = require("discord.js")
-// Get access to the file system
 const fs = require('fs');
 
 // Create a client to get info from server
