@@ -3,15 +3,15 @@
  *  a Fixe proxy server (to allow for a static IP and then) and gets data for members of a specific in-game clan. The 
  *  incoming data is stored as a JSON file for easy access and updating.
  * 
- *  Once the file is created, another JSON file is created to hold all the 'strike' information for each member of the clan. Will
- *  most likely be run daily.
+ *  Once the file is created, another JSON file is created to hold all the 'strike' information for each member of the clan. 
+ *  Will most likely be run daily.
  * 
- *  Relevent functions: 
+ *  Relevant functions: 
  *    @call_api()
  *    @create_strike_data()
  *    @update_data()
  * 
- *  File version: 1.0
+ *  File for bot verion: 1.0
  */
 
 // Permissions/access to other modules and libraries
