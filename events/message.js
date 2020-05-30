@@ -4,7 +4,7 @@ var api = require('../commands/API_call');
 module.exports = (client, msg) => {
 
     if (msg.content === "!test") {
-       api.parse();
+       api.update_data();
     }
 
 

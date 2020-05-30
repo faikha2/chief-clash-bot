@@ -3,7 +3,7 @@ const rp = require('request-promise');
 // Get access to the file system
 const fs = require('fs');
 
-// Let's the request-promise module know we are routhing traffic through proxy
+// Let's the request-promise module know we are routhing traffic through a proxy server
 const fixieRequest = rp.defaults({'proxy': process.env.FIXIE_URL});
 
 // URL and my token of the target site
@@ -41,10 +41,10 @@ function call_api () {
             // Return's nothing if there's an error
             return null;
         });
-}
+} // End call_api
 
-// Parses through JSON file to get names
-function parse() {
+// Parses through JSON file to get names and create our json data
+function create_strike_data() {
 
     // Opens up the json file and reads data into an object variable
     var obj;
@@ -53,19 +53,66 @@ function parse() {
         // Basic error handling
         if (err) throw err;
 
-        // Convers the file into a JSON object
+        // Converts the file into a JSON object
         obj = JSON.parse(data);
-        console.log(obj.items);
 
-        // Loops through the JSON object and accesses clan member's names
+        // Place holder for names from JSON object
+        var usernames = [];
+        // Loops through the JSON object and accesses clan member's names and pushes it into an array
         for (key in obj.items) {
-            console.log(obj.items[key].name)
+            // console.log(obj.items[key].name)
+            usernames.push(obj.items[key].name);
         }
+
+        // Takes the array of names and makes a new array of strike data
+        var txt = "";
+        var json_strike_data = [];
+        for (var i = 0; i < usernames.length; i++) {
+            json_strike_data.push({name: usernames[i], strikes: false, num_strikes: 0, reasons: [{reason_1: txt, reason_2: txt, reason_3: txt}]});
+        }
+
+        // Takes that strike data array and turns it into a JSON version
+        var data = JSON.stringify(json_strike_data);
+
+        // Writes that into a new file
+        fs.writeFile('user_strikes_data.json', data, (err) => {
+            if (err) throw err;
+            console.log('Data written to file');
+        });
+    });
+} // End create_strike_data
+
+function update_data() {
+
+    // Place holder for names from JSON object
+    var usernames = [];
+
+    // Opens up the json file and reads data into an object variable
+    var obj;
+    fs.readFileSync('user_data.json', 'utf8', function (err, data) {
+
+        // Basic error handling
+        if (err) throw err;
+
+        // Converts the file into a JSON object
+        obj = JSON.parse(data);
+
+        // Loops through the JSON object and accesses clan member's names and pushes it into an array
+        for (key in obj.items) {
+            // console.log(obj.items[key].name)
+            usernames.push(obj.items[key].name);
+        }
+
+        console.log('In: ' + usernames);
+
     });
 
-}
+    console.log('OUT: ' + usernames);
+
+} // End update_data
 
 module.exports = {
     call_api : call_api, 
-    parse : parse,
+    create_strike_data : create_strike_data,
+    update_data : update_data,
 };
