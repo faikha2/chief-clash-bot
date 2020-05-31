@@ -87,7 +87,7 @@ function create_strike_data() {
         json_strike_data.push(
             {
                 name: usernames[i], 
-                strikes: false, 
+                active: true, 
                 num_strikes: 0,
                 reasons: 
                 [
@@ -98,6 +98,8 @@ function create_strike_data() {
                 ]
             });
     }
+
+   // json_strike_data.push({name: 'TEST', active: true, reasons: [{ reason_1: txt, reason_2: txt, reason_3: txt}]});
 
     // Takes that strike data array we just made and finally turns it into a JSON opject
     var data = JSON.stringify(json_strike_data);
@@ -120,14 +122,80 @@ function update_data() {
 
     // Easy way to both open and parse a JSON file
     var user_data = require('../user_data.json');
+    var strike_data = require('../user_strikes_data.json');
     
-    // Extracts the clanmate's usernames from the JSON file
+    // Extracts the clanmate's usernames from Clash of Clan's JSON file
     var usernames = []
     for (key in user_data.items) {
         usernames.push(user_data.items[key].name);
     }
 
+    usernames.push('NEW MEMBER1');
+    usernames.push('NEW MEMBER2');
+    usernames.push('NEW MEMBER3');
+
     console.log(usernames);
+
+    // Extracts the usernames from my JSON file
+    var strike_data_users = []
+    for (key in strike_data) {
+        // console.log(strike_data[key].name);
+        strike_data_users.push(strike_data[key].name);
+    }
+    strike_data_users.push('MEMBER THAT LEFT1')
+    strike_data_users.push('MEMBER THAT LEFT2')
+    strike_data_users.push('MEMBER THAT LEFT3')
+
+    // This should check both sets and return the data that's only in the strike data, but not CoC data
+    // (the members that left so CoC API does not show them as in the clan anymore)
+    var lost_members = strike_data_users.filter(x => !usernames.includes(x));
+
+    // console.log('Members lost: ' + lost_members);
+
+    // This should check both sets and return the data that's only in the CoC data, but not our data
+    // (the members that were just added to the game clan)
+    var gained_members = usernames.filter(x => !strike_data_users.includes(x));
+
+   //  console.log('Members gained: ' + gained_members);
+
+    // Flag someone as inactive in our data when they're no longer in the clan
+    for (key in strike_data) {
+        for (var i = 0; i < lost_members.length; i++) {
+            if (strike_data[key].name === lost_members[i]) {
+                console.log('Setting: ' + strike_data[key].name + ' to inactive');
+                strike_data[key].active = false;
+            }
+        }    
+    }
+
+    // Addes all the new members into our file
+    var txt = "";
+    for (var i = 0; i < gained_members.length; i++) {
+        strike_data.push(
+        {
+            name: gained_members[i], 
+            active: true, 
+            num_strikes: 0,
+            reasons: 
+            [
+                { reason_1: txt, 
+                  reason_2: txt, 
+                  reason_3: txt
+                }
+            ]
+        })
+        // console.log('Just pushed member: ' + gained_members[i]);
+    }
+
+    // Converts our strike data array into a JSON object again
+    var data = JSON.stringify(strike_data);
+
+    // Writes that JSON object into a new file
+    fs.writeFile('user_strikes_data.json', data, (err) => {
+        if (err) throw err;
+        console.log('Data written to file');
+    });
+
 } 
 
 /*
