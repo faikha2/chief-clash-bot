@@ -116,7 +116,7 @@ function create_strike_data() {
   usernames) and compare to see if new members were added or if old members need to be removed.
 
   Parameters: None
-  Relevent files: user_data.json, user_strikes_data,json
+  Relevant files: user_data.json, user_strikes_data,json
 */
 function update_data() {
 
@@ -130,11 +130,7 @@ function update_data() {
         usernames.push(user_data.items[key].name);
     }
 
-    usernames.push('NEW MEMBER1');
-    usernames.push('NEW MEMBER2');
-    usernames.push('NEW MEMBER3');
-
-    console.log(usernames);
+    // usernames.push('NEW MEMBER1');
 
     // Extracts the usernames from my JSON file
     var strike_data_users = []
@@ -142,21 +138,14 @@ function update_data() {
         // console.log(strike_data[key].name);
         strike_data_users.push(strike_data[key].name);
     }
-    strike_data_users.push('MEMBER THAT LEFT1')
-    strike_data_users.push('MEMBER THAT LEFT2')
-    strike_data_users.push('MEMBER THAT LEFT3')
+    
+    // strike_data_users.push('MEMBER THAT LEFT1')
 
-    // This should check both sets and return the data that's only in the strike data, but not CoC data
-    // (the members that left so CoC API does not show them as in the clan anymore)
+    // The members that left so CoC API does not show them as in the clan anymore
     var lost_members = strike_data_users.filter(x => !usernames.includes(x));
 
-    // console.log('Members lost: ' + lost_members);
-
-    // This should check both sets and return the data that's only in the CoC data, but not our data
-    // (the members that were just added to the game clan)
+    // The members that were just added to the game clan
     var gained_members = usernames.filter(x => !strike_data_users.includes(x));
-
-   //  console.log('Members gained: ' + gained_members);
 
     // Flag someone as inactive in our data when they're no longer in the clan
     for (key in strike_data) {
