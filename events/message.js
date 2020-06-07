@@ -1,6 +1,7 @@
 // Allows us to call the API functions
 var api = require('../commands/API_call');
 // var schedule = require('node-schedule');
+var strike = require('../commands/strike_handling');
 
 module.exports = (client, msg) => {
 
@@ -11,6 +12,10 @@ module.exports = (client, msg) => {
     if (msg.content === "Ya") {
         console.log("THIS IS A TEST");
         msg.reply("Yo");
+    }
+
+    if (msg.content === "Ye") {
+        strike.add_strike(client, "This is my reason");
     }
 
     // var j = schedule.scheduleJob('*/5 * * * *', function(){

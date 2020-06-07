@@ -35,10 +35,7 @@ http.get('http://bot.whatismyipaddress.com', function(res){
 
 // Open the events folder and retrieve each file
 fs.readdir('./events/', (err, files) => {
-
   files.forEach(file => {
-
-      console.log(file);
 
       // Finds our event
       const eventHandler = require(`./events/${file}`)
