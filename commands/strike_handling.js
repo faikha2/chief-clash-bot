@@ -24,8 +24,6 @@ const fs = require('fs');
 */
 function add_strike(client, reason) {
 
-    console.log(reason);
-
     // Makes an easy to parse JSON object using our strike file
     var strike_data = require('../user_strikes_data.json');
 
@@ -35,8 +33,8 @@ function add_strike(client, reason) {
       usernames.push(strike_data[key].name);
     }
   
-    // console.log(usernames);
-    // console.log(client.user.tag);
+    console.log(usernames);
+    console.log(client.user.tag);
 
 }
 
@@ -50,6 +48,9 @@ function add_strike(client, reason) {
   Relevant files: user_strikes_data.json
 */
 function remove_strike(client, reason) {
+
+  // Makes an easy to parse JSON object using our strike file
+  var strike_data = require('../user_strikes_data.json');
     
 }
 
