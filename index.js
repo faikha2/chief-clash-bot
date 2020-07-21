@@ -50,3 +50,16 @@ fs.readdir('./events/', (err, files) => {
 
 // Login via Discord token
 client.login(process.env.CLIENT_TOKEN)
+
+
+
+/**
+ * TODO: 
+ * 
+ * Add a way to check how many clan game points each player gets
+ *  - Check achievements -> Note down current clan game points -> Note them down at the end
+ * 
+ * 
+ * 
+ * 
+ */

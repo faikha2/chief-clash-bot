@@ -21,6 +21,11 @@ module.exports = (client, msg) => {
         msg.reply("Yuppers");
     }
 
+    if (msg.content === "!test") {
+        const channel = client.channels.cache.get('717213839267201061');
+        channel.send('Test confirmed!');
+    }
+
     if (msg.content === "!roll-help") {
         msg.reply("Use the command !roll-D# with the # being 4, 6, 8, 10, 12, or 20");
     }
@@ -54,10 +59,10 @@ module.exports = (client, msg) => {
     //     strike.add_strike(client, "This is my reason");
     // }
 
-    // var j = schedule.scheduleJob('*/5 * * * *', function(){
-    //     console.log('The answer to life, the universe, and everything!');
-    //     msg.reply("This should happen every 5 minutes");
-    // });
+    var j = schedule.scheduleJob('*/5 * * * *', function(){
+        console.log('The answer to life, the universe, and everything!');
+        msg.reply("This should happen every 5 minutes");
+    });
 
     // var j = schedule.scheduleJob('0 0 * * *', function(){
     //     console.log('The answer to life, the universe, and everything!');
