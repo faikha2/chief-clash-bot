@@ -24,6 +24,7 @@ module.exports = (client, msg) => {
     if (msg.content === "!test") {
         const channel = client.channels.cache.get('717213839267201061');
         channel.send('Test confirmed!');
+        channel.send('!roll-D20');
     }
 
     if (msg.content === "!roll-help") {
