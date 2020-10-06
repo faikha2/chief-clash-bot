@@ -11,6 +11,7 @@
 // Permissions/access to other modules and libraries
 const Discord = require("discord.js")
 const fs = require('fs');
+require('dotenv').config({path: '/root/Disc_bot_2/.env'});
 
 // Create a client to get info from server
 const client = new Discord.Client()
@@ -33,9 +34,18 @@ http.get('http://bot.whatismyipaddress.com', function(res){
     });
 });
 
+console.log('Logging in via CLIENT_TOKEN: ' + process.env.CLIENT_TOKEN);
+
+// Login via Discord token
+client.login(process.env.CLIENT_TOKEN).catch(console.error);
+
+console.log('Logged in via CLIENT_TOKEN: ' + process.env.CLIENT_TOKEN);
+
 // Open the events folder and retrieve each file
 fs.readdir('./events/', (err, files) => {
   files.forEach(file => {
+
+      console.log("File " + file);
 
       // Finds our event
       const eventHandler = require(`./events/${file}`)
@@ -45,11 +55,11 @@ fs.readdir('./events/', (err, files) => {
 
       // Calls the functions with args
       client.on(eventName, (...args) => eventHandler(client, ...args))
+
+      console.log("Completed");
   })
 })
 
-// Login via Discord token
-client.login(process.env.CLIENT_TOKEN)
 
 
 
