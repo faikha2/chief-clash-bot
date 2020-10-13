@@ -17,6 +17,8 @@ var mysql = require('mysql');
 // Create a client to get info from server
 const client = new Discord.Client()
 
+require('log-timestamp');
+
 // Automatically binds to a port, either from Heroku or manually on 8080
 const port = process.env.PORT || 8080;
 console.log("Server listening on port " + port);
@@ -35,21 +37,21 @@ http.get('http://bot.whatismyipaddress.com', function(res){
     });
 });
 
-// mySQL database connection
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "password"
-});
+// // mySQL database connection
+// var con = mysql.createConnection({
+//   host: "localhost",
+//   user: "",
+//   password: "" 
+// });
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected to database!");
-  // con.query("CREATE DATABASE user_data", function (err, result) {
-  //   if (err) throw err;
-  //   console.log("Database created");
-  // });
-});
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected to database!");
+//   // con.query("CREATE DATABASE user_data", function (err, result) {
+//   //   if (err) throw err;
+//   //   console.log("Database created");
+//   // });
+// });
 
 // Login via Discord token
 client.login(process.env.CLIENT_TOKEN).catch(console.error);
@@ -58,7 +60,7 @@ client.login(process.env.CLIENT_TOKEN).catch(console.error);
 fs.readdir('./events/', (err, files) => {
   files.forEach(file => {
 
-      // console.log("File " + file);
+      console.log("File " + file);
 
       // Finds our event
       const eventHandler = require(`./events/${file}`)
@@ -71,7 +73,7 @@ fs.readdir('./events/', (err, files) => {
 
       // console.log("Completed");
   })
-})
+});
 
 
 

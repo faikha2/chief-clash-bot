@@ -1,8 +1,8 @@
 // Allows us to call the API functions
 var api = require('../commands/API_call');
-var schedule = require('node-schedule');
 var strike = require('../commands/strike_handling');
 const { MessageFlags } = require('discord.js');
+require('log-timestamp');
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -59,12 +59,6 @@ module.exports = (client, msg) => {
     // if (msg.content === "Ye") {
     //     strike.add_strike(client, "This is my reason");
     // }
-
-    // var j = schedule.scheduleJob('*/5 * * * *', function(){
-    //     const channel = client.channels.cache.get('735285805085491250');
-    //     channel.send('5 mintute confirmation!');
-    //     channel.send('!roll-D20');
-    // });
 
     // var j = schedule.scheduleJob('0 0 * * *', function(){
     //     console.log('The answer to life, the universe, and everything!');
