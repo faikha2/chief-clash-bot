@@ -12,7 +12,8 @@
 const Discord = require("discord.js")
 const fs = require('fs');
 require('dotenv').config({path: '/root/Disc_bot_2/.env'});
-
+// Adding mysql support
+var mysql = require('mysql');
 // Create a client to get info from server
 const client = new Discord.Client()
 
@@ -34,18 +35,30 @@ http.get('http://bot.whatismyipaddress.com', function(res){
     });
 });
 
-console.log('Logging in via CLIENT_TOKEN: ' + process.env.CLIENT_TOKEN);
+// mySQL database connection
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "password"
+});
+
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected to database!");
+  // con.query("CREATE DATABASE user_data", function (err, result) {
+  //   if (err) throw err;
+  //   console.log("Database created");
+  // });
+});
 
 // Login via Discord token
 client.login(process.env.CLIENT_TOKEN).catch(console.error);
-
-console.log('Logged in via CLIENT_TOKEN: ' + process.env.CLIENT_TOKEN);
 
 // Open the events folder and retrieve each file
 fs.readdir('./events/', (err, files) => {
   files.forEach(file => {
 
-      console.log("File " + file);
+      // console.log("File " + file);
 
       // Finds our event
       const eventHandler = require(`./events/${file}`)
@@ -56,7 +69,7 @@ fs.readdir('./events/', (err, files) => {
       // Calls the functions with args
       client.on(eventName, (...args) => eventHandler(client, ...args))
 
-      console.log("Completed");
+      // console.log("Completed");
   })
 })
 
