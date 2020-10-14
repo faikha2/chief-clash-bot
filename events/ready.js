@@ -6,10 +6,10 @@ require('log-timestamp');
 module.exports = client => {
     console.log(`Logged in as ${client.user.tag}!`)
 
-    var j = schedule.scheduleJob('* */1 * * *', function(){
+    var j = schedule.scheduleJob('* 7 * * *', function(){
         const channel = client.channels.cache.get('717213839267201061');
-        channel.send('1 hour confirmation!');
-        console.log("1 hour passed");
+        channel.send('24 hour confirmation!');
+        console.log("24 hours passed");
         // channel.send('!roll-D20');
     });
 }
