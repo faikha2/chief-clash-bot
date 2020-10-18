@@ -1,6 +1,7 @@
 // Allows us to call the API functions
 var api = require('../commands/API_call');
 var strike = require('../commands/strike_handling');
+var display = require('../commands/display');
 const { MessageFlags } = require('discord.js');
 require('log-timestamp');
 
@@ -12,10 +13,20 @@ function getRandomIntInclusive(min, max) {
 
 module.exports = (client, msg) => {
 
-    // if (msg.content === "!test") {
-    //    api.update_data();
-    // }
+    if (msg.content === "!call-api") {
+       api.call_api();
+       msg.reply("Called the api - hopefully it worked");
+    }
 
+    if (msg.content === "!create-data") {
+        api.create_strike_data();
+        msg.reply("Created the data file - hopefully it worked");
+    }
+
+    if (msg.content === "!display-names") {
+        display(client, msg);
+    }
+ 
     if (msg.content === "Ya") {
         console.log("THIS IS A TEST");
         msg.reply("Yuppers");

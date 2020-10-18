@@ -35,7 +35,6 @@ function add_strike(client, reason) {
   
     console.log(usernames);
     console.log(client.user.tag);
-
 }
 
 /*
