@@ -8,6 +8,8 @@
  *  File for bot version: 1.0
  */
 
+ // pm2 --name My_Bot start npm -- start
+
 // Permissions/access to other modules and libraries
 const Discord = require("discord.js")
 const fs = require('fs');
