@@ -24,7 +24,7 @@ module.exports = (client, msg) => {
     }
 
     if (msg.content === "!display-names") {
-        display(client, msg);
+        display.display_names(client);
     }
  
     if (msg.content === "Ya") {

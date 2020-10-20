@@ -1,30 +1,7 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
-
-
-// function display_names(client) {
-
-//     // Makes an easy to parse JSON object using our strike file
-//     var strike_data = require('../user_strikes_data.json');
-
-//     // Get a list of the names
-//     var usernames = []
-//     for (key in strike_data) {
-//     usernames.push(strike_data[key].name);
-//     }
-
-//     const channel = client.channels.cache.get('735285805085491250');
-//     channel.send(usernames);
-//     // channel.send('!roll-D20');
-
-// }
-
-/*
-  The functions that are exported from this module (meaning they can be used in other files as well)
-*/
-module.exports = (client, msg) => {
-
+function display_names(clientg) {
 
     // Makes an easy to parse JSON object using our strike file
     var strike_data = require('../user_strikes_data.json');
@@ -38,7 +15,7 @@ module.exports = (client, msg) => {
     // inside a command, event listener, etc.
     const exampleEmbed = new Discord.MessageEmbed() 
         .setColor('#9d03fc')
-        .setAuthor('Some name', 'https://api-assets.clashofclans.com/badges/512/xXro3-How4UeBogChbE8uiFRM8iCM1jAQEKbGKKGhmU.png')
+        .setAuthor('Display names? Well, here you go:', 'https://api-assets.clashofclans.com/badges/512/xXro3-How4UeBogChbE8uiFRM8iCM1jAQEKbGKKGhmU.png')
         .addFields(
             { name: "War Farmers: ", value: usernames }
         )
@@ -49,5 +26,13 @@ module.exports = (client, msg) => {
     channel.send(exampleEmbed);
 
     //msg.reply(usernames);
+}
+
+/*
+  The functions that are exported from this module (meaning they can be used in other files as well)
+*/
+module.exports = {
+
+    display_names : display_names
 
 };
