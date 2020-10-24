@@ -33,7 +33,7 @@ function add_strike(client, reason) {
       usernames.push(strike_data[key].name);
     }
   
-    console.log(usernames);
+    console.log("Strike being added for: " + usernames);
     console.log(client.user.tag);
 }
 
@@ -50,6 +50,12 @@ function remove_strike(client, reason) {
 
   // Makes an easy to parse JSON object using our strike file
   var strike_data = require('../user_strikes_data.json');
+
+  // Get a list of the names
+  var usernames = []
+  for (key in strike_data) {
+    usernames.push(strike_data[key].name);
+  }
     
 }
 
