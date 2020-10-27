@@ -23,6 +23,10 @@ module.exports = (client, msg) => {
         msg.reply("Created the data file - hopefully it worked");
     }
 
+    if (msg.content === "!display-strikes") {
+        display.display_strikes(client)
+    }
+
     if (msg.content === "!display-names") {
         display.display_names(client);
     }
