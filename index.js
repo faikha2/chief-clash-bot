@@ -70,6 +70,8 @@ fs.readdir('./events/', (err, files) => {
       // Gets rid of the .js extension
       const eventName = file.split('.')[0]
 
+      console.log("Name: " + eventName)
+
       // Calls the functions with args
       client.on(eventName, (...args) => eventHandler(client, ...args))
 
