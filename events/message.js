@@ -30,6 +30,10 @@ module.exports = (client, msg) => {
     if (msg.content === "!display-names") {
         display.display_names(client);
     }
+
+    if (msg.content === "!welcome-message") {
+        display.display_welcome(client);
+    }
  
     if (msg.content === "Ya") {
         console.log("THIS IS A TEST");
