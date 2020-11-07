@@ -157,7 +157,7 @@ function update_data() {
         }    
     }
 
-    // Addes all the new members into our file
+    // Adds all the new members into our file
     var txt = "";
     for (var i = 0; i < gained_members.length; i++) {
         strike_data.push(
