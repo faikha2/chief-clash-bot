@@ -83,10 +83,14 @@ function create_strike_data() {
     var json_strike_data = [];
     for (var i = 0; i < usernames.length; i++) {
 
+        // Generates a random 4 character string
+        let rand = Math.random().toString(36).toUpperCase().substr(2, 4);
+
         // The format that our data is pushed into the array
         json_strike_data.push(
             {
                 name: usernames[i], 
+                id: rand,
                 active: true, 
                 num_strikes: 0,
                 reasons: 
@@ -99,7 +103,7 @@ function create_strike_data() {
             });
     }
 
-   // json_strike_data.push({name: 'TEST', active: true, reasons: [{ reason_1: txt, reason_2: txt, reason_3: txt}]});
+    // json_strike_data.push({name: 'TEST', active: true, reasons: [{ reason_1: txt, reason_2: txt, reason_3: txt}]});
 
     // Takes that strike data array we just made and finally turns it into a JSON opject
     var data = JSON.stringify(json_strike_data);
@@ -160,9 +164,14 @@ function update_data() {
     // Adds all the new members into our file
     var txt = "";
     for (var i = 0; i < gained_members.length; i++) {
+
+        // Generates a random 4 character string
+        let rand = Math.random().toString(36).toUpperCase().substr(2, 4);
+
         strike_data.push(
         {
             name: gained_members[i], 
+            id: rand,
             active: true, 
             num_strikes: 0,
             reasons: 

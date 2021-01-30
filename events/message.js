@@ -13,6 +13,22 @@ function getRandomIntInclusive(min, max) {
 
 module.exports = (client, msg) => {
 
+    if (msg.content === "!num") {
+        let r = Math.random().toString(36).toUpperCase().substr(2, 4);
+        console.log("random", r);
+        msg.reply("Number is: " + r)
+    }
+
+    if (msg.content === "!create-strike-data") {
+        api.create_strike_data()
+        msg.reply("Created data")
+    }
+
+    if (msg.content === "!update-data") {
+        api.update_data()
+        msg.reply("Updated data")
+    }
+ 
     if (msg.content === "!call-api") {
        api.call_api();
        msg.reply("Called the api - hopefully it worked");
@@ -21,6 +37,15 @@ module.exports = (client, msg) => {
     if (msg.content === "!create-data") {
         api.create_strike_data();
         msg.reply("Created the data file - hopefully it worked");
+    }
+
+    if (msg.content.startsWith("!add-strike")) {
+        var command = msg.content;
+        var id = msg.content.substr(12, 4);
+        var reason = msg.content.substr(17);
+
+        console.log(reason);
+        strike.add_strike(client, id,  reason);
     }
 
     if (msg.content === "!display-strikes") {
@@ -37,13 +62,17 @@ module.exports = (client, msg) => {
  
     if (msg.content === "Ya") {
         console.log("THIS IS A TEST");
-        msg.reply("Yuppers");
+        msg.reply("THIS IS A TEST. I REPEAT, THIS IS A TEST.");
     }
 
     if (msg.content === "!test") {
-        const channel = client.channels.cache.get('735285805085491250');
-        channel.send('Test confirmed!');
-        channel.send('!roll-D20');
+        api.call_api()
+        api.update_data()
+        display.display_names(client)
+    }
+
+    if (msg.content === "!help") {
+        msg.reply("Use !display_names to display all the names and IDs. Then use !add-strike #### REASON to give someone a strike. If you want to see all the strikes, use !display-strikes.")
     }
 
     if (msg.content === "!roll-help") {
