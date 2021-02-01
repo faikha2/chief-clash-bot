@@ -1,13 +1,18 @@
-// Get access to list members command
+/**
+ *  This file is executed whenever someone joins our Discord server. As of right now, 
+ *  it only displays a welcome message. 
+ *  
+ *  File for bot verion: 1.0
+ */
+
+// Get access to the display module
 const { MessageFlags } = require('discord.js');
 var display = require('../commands/display');
 
+/* 
+  Code that is exported from the file and can be run anywhere. 
+*/
 module.exports = (client, member) => {
-
-    console.log("This is a test");
+    // Calls function found in our display file
     display.display_welcome(client);
-
-    // const channel = client.channels.cache.get('742801891704045639');
-
-    // channel.send("This is a test");
 }
