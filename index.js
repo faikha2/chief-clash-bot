@@ -1,5 +1,5 @@
 /**
- *  This is the main file run by the bot and Heroku server. It connects to the Discord API, keeps track of some IP 
+ *  This is the main file run by the bot and server. It connects to the Discord API, keeps track of some IP 
  *  data for debugging purposes and retrieves/runs all of the files in the events folder. 
  * 
  *  Relevant functions:
@@ -8,7 +8,7 @@
  *  File for bot version: 1.0
  */
 
- // pm2 --name My_Bot start npm -- start
+// pm2 --name My_Bot start npm -- start
 
 // Permissions/access to other modules and libraries
 const Discord = require("discord.js")
@@ -39,22 +39,6 @@ http.get('http://bot.whatismyipaddress.com', function(res){
     });
 });
 
-// // mySQL database connection
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "",
-//   password: "" 
-// });
-
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected to database!");
-//   // con.query("CREATE DATABASE user_data", function (err, result) {
-//   //   if (err) throw err;
-//   //   console.log("Database created");
-//   // });
-// });
-
 // Login via Discord token
 client.login(process.env.CLIENT_TOKEN).catch(console.error);
 
@@ -78,17 +62,3 @@ fs.readdir('./events/', (err, files) => {
       // console.log("Completed");
   })
 });
-
-
-
-
-/**
- * TODO: 
- * 
- * Add a way to check how many clan game points each player gets
- *  - Check achievements -> Note down current clan game points -> Note them down at the end
- * 
- * 
- * 
- * 
- */
